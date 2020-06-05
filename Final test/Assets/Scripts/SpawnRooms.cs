@@ -13,8 +13,29 @@ public class SpawnRooms : MonoBehaviour
         Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomMask);
         if(roomDetection == null && levelGen.stopGeneration == true)
         {
-            int rand = Random.Range(0, levelGen.rooms.Length);
-            GameObject room = (GameObject)Instantiate(levelGen.rooms[rand], transform.position, Quaternion.identity);
+            int randRoom = Random.Range(0, 4);
+            int rand;
+            GameObject room;
+            switch (randRoom)
+            {
+                case 0:
+                    rand = Random.Range(0, levelGen.roomsLR.Length);
+                    room = (GameObject)Instantiate(levelGen.roomsLR[rand], transform.position, Quaternion.identity);
+                    break;
+                case 1:
+                    rand = Random.Range(0, levelGen.roomsLRB.Length);
+                    room = (GameObject)Instantiate(levelGen.roomsLRB[rand], transform.position, Quaternion.identity);
+                    break;
+                case 2:
+                    rand = Random.Range(0, levelGen.roomsLRT.Length);
+                    room = (GameObject)Instantiate(levelGen.roomsLRT[rand], transform.position, Quaternion.identity);
+                    break;
+                default:
+                    rand = Random.Range(0, levelGen.roomsLRTB.Length);
+                    room = (GameObject)Instantiate(levelGen.roomsLRTB[rand], transform.position, Quaternion.identity);
+                    break;
+
+            }
             room.transform.parent = levelGen.grid.transform;
             Destroy(gameObject);
         }

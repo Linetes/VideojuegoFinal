@@ -29910,11 +29910,15 @@ MonoBehaviour:
   - {fileID: 134293269}
   - {fileID: 530753390}
   player: {fileID: 1141565045}
-  rooms:
+  roomsLR:
   - {fileID: 3005112545987915222, guid: bd64db6165738f64c8ec92a0d31ebbfb, type: 3}
+  - {fileID: 3896324997627876363, guid: ddf5da35c8a2c044584dc07e68eb5c18, type: 3}
+  roomsLRB:
   - {fileID: 1401064768690573960, guid: 5e156d3321460904898cb445ddd24afb, type: 3}
-  - {fileID: 7775085797812896830, guid: 78ea05d5d8dbf8b489c56aff977f92f4, type: 3}
+  roomsLRT:
   - {fileID: 189678566679664258, guid: d35309f4105e4a34c9367c4cca92c77f, type: 3}
+  roomsLRTB:
+  - {fileID: 7775085797812896830, guid: 78ea05d5d8dbf8b489c56aff977f92f4, type: 3}
   grid: {fileID: 241149435}
   moveAmountX: 40
   moveAmountY: 20

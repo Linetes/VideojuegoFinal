@@ -6,7 +6,10 @@ public class NewLevelGenerator : MonoBehaviour
 {
     public Transform[] startingPositions;
     public GameObject player;
-    public GameObject[] rooms;
+    public GameObject[] roomsLR;
+    public GameObject[] roomsLRB;
+    public GameObject[] roomsLRT;
+    public GameObject[] roomsLRTB;
     public GameObject grid;
 
     private int direction;
@@ -30,9 +33,10 @@ public class NewLevelGenerator : MonoBehaviour
     {
         
         int randStartingPos = Random.Range(0, startingPositions.Length);
+        int randStartingRoom = Random.Range(0, 5);
         Debug.Log(randStartingPos);
         transform.position = new Vector2(startingPositions[randStartingPos].position.x, startingPositions[randStartingPos].position.y);
-        GameObject startRoom = (GameObject)Instantiate(rooms[0], transform.position, Quaternion.identity);
+        GameObject startRoom = (GameObject)Instantiate(roomsLR[0], transform.position, Quaternion.identity);
         startRoom.transform.parent = grid.transform;
         player.transform.position = new Vector2(transform.position.x, transform.position.y);
 
@@ -50,8 +54,29 @@ public class NewLevelGenerator : MonoBehaviour
                 Vector2 newPos = new Vector2(transform.position.x + moveAmountX, transform.position.y);
                 transform.position = newPos;
 
-                int rand = Random.Range(0, rooms.Length);
-                GameObject room = (GameObject)Instantiate(rooms[rand], transform.position, Quaternion.identity);
+                
+                int randRoom = Random.Range(0, 4);
+                int rand;
+                GameObject room;
+                switch(randRoom){
+                    case 0:
+                        rand = Random.Range(0, roomsLR.Length);
+                        room = (GameObject)Instantiate(roomsLR[rand], transform.position, Quaternion.identity);
+                        break;
+                    case 1:
+                        rand = Random.Range(0, roomsLRB.Length);
+                        room = (GameObject)Instantiate(roomsLRB[rand], transform.position, Quaternion.identity);
+                        break;
+                    case 2:
+                        rand = Random.Range(0, roomsLRT.Length);
+                        room = (GameObject)Instantiate(roomsLRT[rand], transform.position, Quaternion.identity);
+                        break;
+                    default:
+                        rand = Random.Range(0, roomsLRTB.Length);
+                        room = (GameObject)Instantiate(roomsLRTB[rand], transform.position, Quaternion.identity);
+                        break;
+                }
+                
 
                 room.transform.parent = grid.transform;
 
@@ -77,8 +102,28 @@ public class NewLevelGenerator : MonoBehaviour
                 Vector2 newPos = new Vector2(transform.position.x - moveAmountX, transform.position.y);
                 transform.position = newPos;
 
-                int rand = Random.Range(0, rooms.Length);
-                GameObject room = (GameObject)Instantiate(rooms[rand], transform.position, Quaternion.identity);
+                int randRoom = Random.Range(0, 4);
+                int rand;
+                GameObject room;
+                switch (randRoom)
+                {
+                    case 0:
+                        rand = Random.Range(0, roomsLR.Length);
+                        room = (GameObject)Instantiate(roomsLR[rand], transform.position, Quaternion.identity);
+                        break;
+                    case 1:
+                        rand = Random.Range(0, roomsLRB.Length);
+                        room = (GameObject)Instantiate(roomsLRB[rand], transform.position, Quaternion.identity);
+                        break;
+                    case 2:
+                        rand = Random.Range(0, roomsLRT.Length);
+                        room = (GameObject)Instantiate(roomsLRT[rand], transform.position, Quaternion.identity);
+                        break;
+                    default:
+                        rand = Random.Range(0, roomsLRTB.Length);
+                        room = (GameObject)Instantiate(roomsLRTB[rand], transform.position, Quaternion.identity);
+                        break;
+                }
 
                 room.transform.parent = grid.transform;
 
@@ -92,17 +137,23 @@ public class NewLevelGenerator : MonoBehaviour
         }
         else if(direction == 5)
         {
+            int rand;
             downCounter++;
             if(transform.position.y > minY)
             {
                 Debug.Log(roomMask);
                 Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomMask);
-                if(roomDetection.GetComponent<RoomType>().type != 1 && roomDetection.GetComponent<RoomType>().type != 3)
+                if (!roomDetection)
+                {
+                    Debug.Log(Physics2D.OverlapCircle(transform.position, 1, roomMask));
+                }
+                if (roomDetection.GetComponent<RoomType>().type != 1 && roomDetection.GetComponent<RoomType>().type != 3)
                 {
                     if (downCounter >= 2)
                     {
                         roomDetection.GetComponent<RoomType>().RoomDestruction();
-                        GameObject room = (GameObject)Instantiate(rooms[3], transform.position, Quaternion.identity);
+                        rand = Random.Range(0, roomsLRTB.Length);
+                        GameObject room = (GameObject)Instantiate(roomsLRTB[rand], transform.position, Quaternion.identity);
                         room.transform.parent = grid.transform;
                     }
                     else
@@ -114,7 +165,25 @@ public class NewLevelGenerator : MonoBehaviour
                         {
                             randBottomRoom = 1;
                         }
-                        GameObject room = (GameObject)Instantiate(rooms[randBottomRoom], transform.position, Quaternion.identity);
+                        
+                        GameObject room;
+                        switch (randBottomRoom)
+                        {
+                        
+                            case 1:
+                                rand = Random.Range(0, roomsLRB.Length);
+                                room = (GameObject)Instantiate(roomsLRB[rand], transform.position, Quaternion.identity);
+                                break;
+                            case 2:
+                                rand = Random.Range(0, roomsLRT.Length);
+                                room = (GameObject)Instantiate(roomsLRT[rand], transform.position, Quaternion.identity);
+                                break;
+                            default:
+                                rand = Random.Range(0, roomsLRTB.Length);
+                                room = (GameObject)Instantiate(roomsLRTB[rand], transform.position, Quaternion.identity);
+                                break;
+                        }
+                        
 
                         room.transform.parent = grid.transform;
                     }
@@ -123,8 +192,19 @@ public class NewLevelGenerator : MonoBehaviour
                 Vector2 newPos = new Vector2(transform.position.x, transform.position.y - moveAmountY);
                 transform.position = newPos;
 
-                int rand = Random.Range(2, 4);
-                GameObject room2 = (GameObject)Instantiate(rooms[rand], transform.position, Quaternion.identity);
+                int randRoom = Random.Range(2, 4);
+                GameObject room2;
+                switch (randRoom)
+                {
+                    case 2:
+                        rand = Random.Range(0, roomsLRT.Length);
+                        room2 = (GameObject)Instantiate(roomsLRT[rand], transform.position, Quaternion.identity);
+                        break;
+                    default:
+                        rand = Random.Range(0, roomsLRTB.Length);
+                        room2 = (GameObject)Instantiate(roomsLRTB[rand], transform.position, Quaternion.identity);
+                        break;
+                }
 
                 room2.transform.parent = grid.transform;
 
