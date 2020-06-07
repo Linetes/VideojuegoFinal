@@ -38,7 +38,7 @@ public class NewLevelGenerator : MonoBehaviour
         transform.position = new Vector2(startingPositions[randStartingPos].position.x, startingPositions[randStartingPos].position.y);
         GameObject startRoom = (GameObject)Instantiate(roomsLR[0], transform.position, Quaternion.identity);
         startRoom.transform.parent = grid.transform;
-        player.transform.position = new Vector2(transform.position.x, transform.position.y);
+        player.transform.position = new Vector2(transform.position.x-1, transform.position.y-1);
 
         direction = Random.Range(1, 6);
         
@@ -60,7 +60,7 @@ public class NewLevelGenerator : MonoBehaviour
                 GameObject room;
                 switch(randRoom){
                     case 0:
-                        rand = Random.Range(0, roomsLR.Length);
+                        rand = Random.Range(2, roomsLR.Length);
                         room = (GameObject)Instantiate(roomsLR[rand], transform.position, Quaternion.identity);
                         break;
                     case 1:
@@ -108,7 +108,7 @@ public class NewLevelGenerator : MonoBehaviour
                 switch (randRoom)
                 {
                     case 0:
-                        rand = Random.Range(0, roomsLR.Length);
+                        rand = Random.Range(2, roomsLR.Length);
                         room = (GameObject)Instantiate(roomsLR[rand], transform.position, Quaternion.identity);
                         break;
                     case 1:
@@ -143,10 +143,6 @@ public class NewLevelGenerator : MonoBehaviour
             {
                 Debug.Log(roomMask);
                 Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomMask);
-                if (!roomDetection)
-                {
-                    Debug.Log(Physics2D.OverlapCircle(transform.position, 1, roomMask));
-                }
                 if (roomDetection.GetComponent<RoomType>().type != 1 && roomDetection.GetComponent<RoomType>().type != 3)
                 {
                     if (downCounter >= 2)
@@ -212,6 +208,10 @@ public class NewLevelGenerator : MonoBehaviour
             }
             else
             {
+                Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomMask);
+                roomDetection.GetComponent<RoomType>().RoomDestruction();
+                GameObject room = (GameObject)Instantiate(roomsLR[1], transform.position, Quaternion.identity);
+                room.transform.parent = grid.transform;
                 stopGeneration = true;
             }
         }

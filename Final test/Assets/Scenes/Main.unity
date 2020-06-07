@@ -29911,14 +29911,20 @@ MonoBehaviour:
   - {fileID: 530753390}
   player: {fileID: 1141565045}
   roomsLR:
+  - {fileID: 8903683552145605242, guid: fa063a9e3f19bd44a849798ce50ea871, type: 3}
+  - {fileID: 6390849052200792771, guid: d5e3ce52ce34362458b9ae7cd4b111d5, type: 3}
   - {fileID: 3005112545987915222, guid: bd64db6165738f64c8ec92a0d31ebbfb, type: 3}
   - {fileID: 3896324997627876363, guid: ddf5da35c8a2c044584dc07e68eb5c18, type: 3}
   roomsLRB:
   - {fileID: 1401064768690573960, guid: 5e156d3321460904898cb445ddd24afb, type: 3}
+  - {fileID: 685898411722046779, guid: 1d330ada35a7c324da43a635a766c1da, type: 3}
+  - {fileID: 1768145913757387110, guid: fb35e342d7f11ce4381c542e8af139fe, type: 3}
   roomsLRT:
-  - {fileID: 189678566679664258, guid: d35309f4105e4a34c9367c4cca92c77f, type: 3}
-  roomsLRTB:
   - {fileID: 7775085797812896830, guid: 78ea05d5d8dbf8b489c56aff977f92f4, type: 3}
+  - {fileID: 5022862396805365038, guid: 1324119a3c42e7343ac34647a2d62025, type: 3}
+  roomsLRTB:
+  - {fileID: 189678566679664258, guid: d35309f4105e4a34c9367c4cca92c77f, type: 3}
+  - {fileID: 4184604209166976768, guid: b51839fbd034d3e4cb82a8c6616fd86e, type: 3}
   grid: {fileID: 241149435}
   moveAmountX: 40
   moveAmountY: 20

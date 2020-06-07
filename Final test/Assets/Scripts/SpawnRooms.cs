@@ -19,7 +19,7 @@ public class SpawnRooms : MonoBehaviour
             switch (randRoom)
             {
                 case 0:
-                    rand = Random.Range(0, levelGen.roomsLR.Length);
+                    rand = Random.Range(2, levelGen.roomsLR.Length);
                     room = (GameObject)Instantiate(levelGen.roomsLR[rand], transform.position, Quaternion.identity);
                     break;
                 case 1:
